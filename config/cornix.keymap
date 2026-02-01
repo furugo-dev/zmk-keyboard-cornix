@@ -163,6 +163,33 @@
                 = <&macro_tap &kp LANGUAGE_2 &kp INTERNATIONAL_5 &to 0>
                 ;
         };
+        esc_lang2: esc_lang2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp ESC &kp LANGUAGE_2>
+                ;
+        };
+        zh_arrow: zh_arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp Z &kp H>;
+        };
+        zj_arrow: zj_arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp Z &kp J>;
+        };
+        zk_arrow: zk_arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp Z &kp K>;
+        };
+        zl_arrow: zl_arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp Z &kp L>;
+        };
     };
 
     combos {
@@ -208,6 +235,42 @@
             bindings = <&ng_off>;
             layers = <BASE NAGI>; // デフォルトレイヤーが0、薙刀式レイヤーが1の前提
         };
+
+        combo_eng {
+            timeout-ms = <50>;
+            key-positions = <26 27>; // X, C
+            bindings = <&kp LANGUAGE_2>;
+        };
+
+        combo_jpn {
+            timeout-ms = <50>;
+            key-positions = <34 35>; // M, J
+            bindings = <&kp LANGUAGE_1>;
+        };
+
+        combo_zh {
+            timeout-ms = <50>;
+            key-positions = <25 18>; // Z + K
+            bindings = <&zh_arrow>;
+        };
+
+        combo_zj {
+            timeout-ms = <50>;
+            key-positions = <25 19>; // Z + T
+            bindings = <&zj_arrow>;
+        };
+
+        combo_zk {
+            timeout-ms = <50>;
+            key-positions = <25 20>; // Z + N
+            bindings = <&zk_arrow>;
+        };
+
+        combo_zl {
+            timeout-ms = <50>;
+            key-positions = <25 21>; // Z + S
+            bindings = <&zl_arrow>;
+        };
     };
 
     keymap {
@@ -224,7 +287,7 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&none  &kp  ESC         &kp L         &kp U         &kp F        &kp DOT                         &kp SEMI                   &kp W                &kp R            &kp Y         &none             &none
+&none  &esc_lang2       &kp L         &kp U         &kp F        &kp DOT                         &kp SEMI                   &kp W                &kp R            &kp Y         &none             &none
 &kp Q  &hm_l LCTRL E    &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                       &kp K                      &kp T                &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H     &kp P
 &none  &hm_l LGUI Z     &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &none  &kp G                      &kp D                &kp M            &kp J         &kp B             &none
 &none    &none          &none         &none         &lt 2  TAB   &hm_shift_l  LSHFT SPACE        &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE     &none            &none         &none             &none
