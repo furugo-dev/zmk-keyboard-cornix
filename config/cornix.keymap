@@ -343,7 +343,7 @@
             //                |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
-&trans  &none      &kp LBKT  &kp DQT    &kp RGKT  &none                      &kp F5    &kp F4     &kp F2     &kp F10   &kp F11  &kp F12
+&trans  &none      &kp LBKT  &kp DQT    &kp RBKT  &none                      &kp F5    &kp F4     &kp F2     &kp F10   &kp F11  &kp F12
 &kp AT  &kp CARET  &kp LPAR  &kp SQT    &kp RPAR  &kp DLLR                   &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT &kp DEL  &trans
 &trans  &kp AMPS   &kp LBRC  &kp GRAVE  &kp RBRC  &kp UNDER  &trans  &trans  &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none    &trans
 &none   &none      &none     &trans     &mo 4     &trans                     &trans    &trans     &trans     &none     &none    &none
