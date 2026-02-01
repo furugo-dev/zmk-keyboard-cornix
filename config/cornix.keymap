@@ -362,9 +362,9 @@
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&kp CAPSLOCK   &none          &kp F7         &kp F8         &kp F9         &none                          &none            &none           &none          &none             &none             &none
+&kp CLCK       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &none           &none          &none             &none             &none
 &kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &none            &none           &none          &none             &none             &none
-&none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &none            &none           &none          &none             &ext_power EP_ON  &kp CAPSLOCK
+&none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &none            &none           &none          &none             &none             &kp CLCK
 &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &none          &none                          &none            &none           &kp N4         &none             &none             &none
             >;
         };
