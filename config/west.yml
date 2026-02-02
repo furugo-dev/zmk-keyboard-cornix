@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/urob
     - name: janpfischer
       url-base: https://github.com/janpfischer
+    - name: eswai
+      url-base: https://github.com/eswai
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -19,6 +21,9 @@ manifest:
       remote: urob
       revision: main
       clone-depth: 1
+    - name: zmk-naginata
+      remote: eswai
+      revision: main
     #- name: zmk-rgbled-widget
     #  remote: hitsmaxft
     #  revision: main
