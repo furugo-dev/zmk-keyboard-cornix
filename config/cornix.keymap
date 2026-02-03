@@ -288,7 +288,7 @@
 &none  &esc_lang2     &kp L         &kp U         &kp F        &kp DOT                         &kp SEMI                   &kp W             &kp R            &kp Y         &none          &none
 &kp Q  &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                       &kp K                      &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none  &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &none  &kp G                      &kp D             &kp M            &kp J         &kp B          &none
-&none    &none        &none         &mo 4         &lt 2  TAB   &hm_shift_l  LSHFT SPACE        &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &none
+&none    &none        &none         &lt 4 ESC     &lt 2  TAB   &hm_shift_l  LSHFT SPACE        &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -307,7 +307,7 @@
 &none  &ng  ESC  &ng W    &ng E         &ng R        &ng T                       &ng Y        &ng U             &ng I       &ng O   &none      &none
 &ng Q  &ng  A    &ng S    &ng D         &ng F        &ng G                       &ng H        &ng J             &ng K       &ng L   &ng SEMI   &ng P
 &none  &ng  Z    &ng X    &ng C         &ng V        &ng B    &trans  &trans     &ng N        &ng M             &ng COMMA   &ng DOT &ng SLASH  &none
-&none    &none   &none    &none         &lt 2  TAB   &ng SPACE                   &ng ENTER    &lt 3  BACKSPACE  &none       &none   &none      &none
+&none    &none   &none    &trans         &lt 2  TAB   &ng SPACE                   &ng ENTER    &lt 3  BACKSPACE  &none       &none   &none      &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -327,7 +327,7 @@
 &none    &none   &kp N7  &kp N8  &kp N9  &none                      &none   &kp PLUS      &kp ASTRK  &kp TILDE  &none           &none 
 &kp HASH &kp N0  &kp N4  &kp N5  &kp N6  &kp DOT                    &kp LT  &kp EXCL      &kp EQUAL  &kp DOT    &kp SLASH       &kp PIPE
 &none    &none   &kp N1  &kp N2  &kp N3  &kp PRCNT  &trans  &trans  &kp GT  &kp QUESTION  &kp COLON  &kp SEMI   &kp BACKSLASH   &none
-&none    &none   &none   &none   &trans  &trans                     &trans  &none         &none      &none      &none           &none
+&none    &none   &none   &trans   &trans  &trans                     &trans  &none         &none      &none      &none           &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -346,7 +346,7 @@
 &trans  &none      &kp LBKT  &kp DQT    &kp RBKT  &none                      &kp F5  &kp F4    &kp F2     &kp F10   &kp F11    &kp F12
 &kp AT  &kp CARET  &kp LPAR  &kp SQT    &kp RPAR  &kp DLLR                   &kp LEFT  &kp DOWN   &kp UP  &kp RIGHT &kp DEL  &none 
 &trans  &kp AMPS   &kp LBRC  &kp GRAVE  &kp RBRC  &kp UNDER  &trans  &trans  &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none  &none
-&none   &none      &none     &trans     &none     &trans                     &trans  &trans    &trans     &none      &none     &none
+&none   &none      &none     &trans     &trans     &trans                     &trans  &trans    &trans     &none      &none     &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -365,7 +365,7 @@
 &kp CLCK       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none             &none
 &kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none             &none
 &none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &none            &none           &none          &none             &ext_power EP_ON  &kp CLCK
-&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &trans         &trans                         &trans           &trans          &trans         &none             &none             &none
+&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none             &bt BT_CLR
             >;
         };
 
