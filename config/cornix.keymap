@@ -288,7 +288,7 @@
 &none  &esc_lang2     &kp L         &kp U         &kp F        &kp DOT                         &kp SEMI                   &kp W             &kp R            &kp Y         &none          &none
 &kp Q  &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                       &kp K                      &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none  &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &none  &kp G                      &kp D             &kp M            &kp J         &kp B          &none
-&none    &none        &none         &lt 4 ESC     &lt 2  TAB   &hm_shift_l  LSHFT SPACE        &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &none
+&bt BT_SEL 0   &none        &none         &lt 4 ESC     &lt 2  TAB   &hm_shift_l  LSHFT SPACE        &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt BT_SEL 1
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
