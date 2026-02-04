@@ -135,6 +135,12 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
         };
+
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
+        };
     };
 
     conditional_layers {
@@ -289,7 +295,7 @@
 &none         &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &kp C_AL_LOCK &kp G                      &kp D             &kp M            &kp J         &kp B          &none
 &bt BT_SEL 0  &none          &none         &lt 4 ESC     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt BT_SEL 1
             >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &msc SCRL_RIGHT SCRL_LEFT>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
         };
 
         naginata_layer {
