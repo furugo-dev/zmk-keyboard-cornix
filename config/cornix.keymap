@@ -50,7 +50,7 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;                // repeat on tap-into-hold
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
@@ -63,7 +63,7 @@
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
 
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
@@ -79,8 +79,6 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
-
-            //flavor = "balanced";
 
             flavor = "balanced";
             tapping-term-ms = <HM_TAPPING_TERM_FAST>;
@@ -171,8 +169,13 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp ESC &kp LANGUAGE_2>
+                = <&macro_tap &kp ESC &kp LANGUAGE_2 &to BASE>
                 ;
+        };
+        eng_mode: eng_mode {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp LANGUAGE_2 &to BASE>;
         };
         zh_arrow: zh_arrow {
             compatible = "zmk,behavior-macro";
@@ -243,7 +246,7 @@
         combo_eng {
             timeout-ms = <50>;
             key-positions = <26 27>; // X, C
-            bindings = <&kp LANGUAGE_2>;
+            bindings = <&eng_mode>;
         };
 
         combo_jpn {
