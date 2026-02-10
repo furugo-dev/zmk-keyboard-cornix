@@ -203,7 +203,7 @@
         compatible = "zmk,combos";
 
         cb_ltm {
-            bindings = <&kp ESC>;
+            bindings = <&esc_lang2>;
             key-positions = <2 4>;
             layers = <0 1>;
         };
