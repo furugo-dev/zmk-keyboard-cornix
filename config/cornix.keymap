@@ -180,22 +180,22 @@
         zh_arrow: zh_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp Z &kp H>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp H>;
         };
         zj_arrow: zj_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp Z &kp J>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp J>;
         };
         zk_arrow: zk_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp Z &kp K>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp K>;
         };
         zl_arrow: zl_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp Z &kp L>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L>;
         };
     };
 
@@ -253,30 +253,6 @@
             timeout-ms = <50>;
             key-positions = <34 35>; // M, J
             bindings = <&kp LANGUAGE_1>;
-        };
-
-        combo_zh {
-            timeout-ms = <50>;
-            key-positions = <25 18>; // Z + K
-            bindings = <&zh_arrow>;
-        };
-
-        combo_zj {
-            timeout-ms = <50>;
-            key-positions = <25 19>; // Z + T
-            bindings = <&zj_arrow>;
-        };
-
-        combo_zk {
-            timeout-ms = <50>;
-            key-positions = <25 20>; // Z + N
-            bindings = <&zk_arrow>;
-        };
-
-        combo_zl {
-            timeout-ms = <50>;
-            key-positions = <25 21>; // Z + S
-            bindings = <&zl_arrow>;
         };
     };
 
@@ -366,10 +342,10 @@
             // |  BT0  |  BT1  | BT2 | TRANS| TRANS| TRANS|        |  |       | TRANS| TRANS | TRANS | NONE | NONE  | BTCLR |
 
             bindings = <
-&kp CLCK       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none             &none
-&kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none             &none
-&none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &none            &none           &none          &none             &ext_power EP_ON  &kp C_AL_LOCK
-&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none             &bt BT_CLR
+&kp CLCK       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
+&kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none     &none
+&none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &zh_arrow        &zj_arrow       &zk_arrow      &zl_arrow         &trans    &trans
+&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none     &bt BT_CLR
             >;
         };
 
