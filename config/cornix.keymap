@@ -202,34 +202,6 @@
     combos {
         compatible = "zmk,combos";
 
-        cb_ltm {
-            bindings = <&esc_lang2>;
-            key-positions = <2 4>;
-            layers = <0 1>;
-        };
-
-        cb_lm {
-            bindings = <&kp TAB>;
-            key-positions = <14 16>;
-            layers = <0 1>;
-        };
-
-        cb_enter {
-            bindings = <&kp RET>;
-            key-positions = <21 19>;
-            layers = <0 1>;
-        };
-
-        layer3 {
-            bindings = <&kp N3>;
-            key-positions = <5 6>;
-        };
-
-        layer4 {
-            bindings = <&kp N4>;
-            key-positions = <5 6>;
-        };
-
         combo_ng_on {
             timeout-ms = <300>;
             key-positions = <18 19>; // H, Jのキー位置に書き換えてください
