@@ -202,6 +202,12 @@
     combos {
         compatible = "zmk,combos";
 
+        cb_ltm {
+            bindings = <&esc_lang2>;
+            key-positions = <2 4>;
+            layers = <0 1>;
+        };
+
         combo_ng_on {
             timeout-ms = <300>;
             key-positions = <18 19>; // H, Jのキー位置に書き換えてください
