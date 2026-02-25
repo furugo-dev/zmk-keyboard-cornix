@@ -232,6 +232,13 @@
             key-positions = <34 35>; // M, J
             bindings = <&kp LANGUAGE_1>;
         };
+
+        combo_shift_enter {
+            timeout-ms = <300>;
+            key-positions = <43 44>; // LH0 + RH0 = 左スペース + 右エンター
+            bindings = <&kp LS(ENTER)>;
+            layers = <NAGI>;
+        };
     };
 
     keymap {
