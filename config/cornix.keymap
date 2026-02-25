@@ -180,22 +180,22 @@
         zh_arrow: zh_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp H>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp H &kp ENTER>;
         };
         zj_arrow: zj_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp J>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp J &kp ENTER>;
         };
         zk_arrow: zk_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp K>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp K &kp ENTER>;
         };
         zl_arrow: zl_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L &kp ENTER>;
         };
     };
 
