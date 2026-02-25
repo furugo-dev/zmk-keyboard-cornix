@@ -180,22 +180,22 @@
         zh_arrow: zh_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp H>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp H &kp ENTER>;
         };
         zj_arrow: zj_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp J>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp J &kp ENTER>;
         };
         zk_arrow: zk_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp K>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp K &kp ENTER>;
         };
         zl_arrow: zl_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L>;
+            bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L &kp ENTER>;
         };
     };
 
@@ -231,6 +231,13 @@
             timeout-ms = <50>;
             key-positions = <34 35>; // M, J
             bindings = <&kp LANGUAGE_1>;
+        };
+
+        combo_shift_enter {
+            timeout-ms = <300>;
+            key-positions = <43 44>; // LH0 + RH0 = 左スペース + 右エンター
+            bindings = <&kp LS(ENTER)>;
+            layers = <NAGI>;
         };
     };
 
