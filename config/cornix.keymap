@@ -111,7 +111,7 @@
         hm_ng_l: homerow_mods_naginata_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&ng>;
+            bindings = <&mod_nagi>, <&ng>;
 
             flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
@@ -124,7 +124,7 @@
         hm_ng_r: homerow_mods_naginata_right {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&kp>, <&ng>;
+            bindings = <&mod_nagi>, <&ng>;
 
             flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
@@ -252,6 +252,26 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap &kp LANGUAGE_1 &kp Z &kp L &kp ENTER>;
+        };
+
+        // Parameterized macro: hold modifier + temporarily switch to BASE layer
+        // On hold: switch to BASE, press modifier
+        // On release: release modifier, switch back to NAGI
+        mod_nagi: mod_nagi {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_tap>,
+                <&to BASE>,
+                <&macro_press>,
+                <&macro_param_1to1>,
+                <&kp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1>,
+                <&kp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&to NAGI>;
         };
     };
 
