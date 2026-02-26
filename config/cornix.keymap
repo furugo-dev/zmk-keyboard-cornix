@@ -19,6 +19,7 @@
 
 #define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 70
+#define HM_PRIOR_IDLE_NG 125
 #define BASE 0
 #define NAGI 1
 #define LOWER 2
@@ -101,6 +102,61 @@
 
             // for quick tapping; shift+~
 
+            hold-trigger-on-release;
+        };
+
+        // Naginata layer HRM (hold=modifier, tap=naginata key)
+        // Higher require-prior-idle-ms to avoid false mod activation during naginata chords
+
+        hm_ng_l: homerow_mods_naginata_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&ng>;
+
+            flavor = "tap-preferred";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_ng_r: homerow_mods_naginata_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&ng>;
+
+            flavor = "tap-preferred";
+            tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_ng_shift_l: hm_ng_shift_l {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&ng>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_ng_shift_r: hm_ng_shift_r {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&ng>;
+
+            flavor = "balanced";
+            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
             hold-trigger-on-release;
         };
 
@@ -267,15 +323,15 @@
 
             // ------------------------------------------------------------------------------------------------------------
             // |  NONE |  ESC  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   | NONE  | NONE  |
-            // |  Q    |  A    |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |  ;    |  P    |
+            // |  Q    |  A/CTL|  S/A|  D/G |  F   |  G   |                   |  H   |  J    |  K/G  |  L/A |  ;/CTL|  P    |
             // |  NONE |  Z    |  X  |  C   |  V   |  B   |  TRANS |  | TRANS |  N   |  M    |  ,    |  .   |  /    | NONE  |
-            // |  NONE | NONE  | NONE| TRANS| 2/TAB| SPACE|        |  |       | ENTER| 3/BSP | NONE  | NONE | NONE  | NONE  |
+            // |  NONE | NONE  | NONE| TRANS| 2/TAB| S/SPC|        |  |       | S/ENT| 3/BSP | NONE  | NONE | NONE  | NONE  |
 
             bindings = <
-&none  &ng  ESC  &ng W    &ng E         &ng R        &ng T                    &ng Y      &ng U             &ng I       &ng O   &none      &none
-&ng Q  &ng  A    &ng S    &ng D         &ng F        &ng G                    &ng H      &ng J             &ng K       &ng L   &ng SEMI   &ng P
-&none  &ng  Z    &ng X    &ng C         &ng V        &ng B    &trans  &trans  &ng N      &ng M             &ng COMMA   &ng DOT &ng SLASH  &none
-&none  &none     &none    &trans        &lt 2  TAB   &ng SPACE                &ng ENTER  &lt 3  BACKSPACE  &none       &none   &none      &none
+&none  &ng  ESC  &ng W              &ng E            &ng R        &ng T                                          &ng Y                          &ng U             &ng I            &ng O   &none              &none
+&ng Q  &hm_ng_l LCTRL A  &hm_ng_l LALT S  &hm_ng_l LGUI D  &ng F        &ng G                                          &ng H                          &ng J             &hm_ng_r RGUI K  &hm_ng_r RALT L  &hm_ng_r RCTRL SEMI  &ng P
+&none  &ng  Z    &ng X              &ng C            &ng V        &ng B    &trans  &trans                        &ng N                          &ng M             &ng COMMA        &ng DOT &ng SLASH           &none
+&none  &none     &none              &trans           &lt 2  TAB   &hm_ng_shift_l LSHFT SPACE                    &hm_ng_shift_r RSHFT ENTER     &lt 3  BACKSPACE  &none            &none   &none               &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
