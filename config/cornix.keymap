@@ -348,10 +348,10 @@
             // |  NONE | NONE  | NONE| TRANS| 2/TAB| S/SPC|        |  |       | S/ENT| 3/BSP | NONE  | NONE | NONE  | NONE  |
 
             bindings = <
-&none  &ng  ESC  &ng W              &ng E            &ng R        &ng T                                          &ng Y                          &ng U             &ng I            &ng O   &none              &none
-&ng Q  &hm_ng_l LCTRL A  &hm_ng_l LALT S  &hm_ng_l LGUI D  &ng F        &ng G                                          &ng H                          &ng J             &hm_ng_r RGUI K  &hm_ng_r RALT L  &hm_ng_r RCTRL SEMI  &ng P
-&none  &ng  Z    &ng X              &ng C            &ng V        &ng B    &trans  &trans                        &ng N                          &ng M             &ng COMMA        &ng DOT &ng SLASH           &none
-&none  &none     &none              &trans           &lt 2  TAB   &hm_ng_shift_l LSHFT SPACE                    &hm_ng_shift_r RSHFT ENTER     &lt 3  BACKSPACE  &none            &none   &none               &none
+&none  &ng  ESC  &ng W              &ng E            &ng R        &ng T                     &ng Y         &ng U             &ng I            &ng O   &none              &none
+&ng Q  &hm_ng_l LCTRL A  &hm_ng_l LALT S  &hm_ng_l LGUI D  &ng F        &ng G               &ng H         &ng J             &hm_ng_r RGUI K  &hm_ng_r RALT L  &hm_ng_r RCTRL SEMI  &ng P
+&none  &ng  Z    &ng X              &ng C            &ng V        &ng B    &trans  &trans   &ng N         &ng M             &ng COMMA        &ng DOT &ng SLASH           &none
+&none  &none     &none              &trans           &lt 2  TAB   &ng SPACE                 &ng ENTER     &lt 3  BACKSPACE  &none            &none   &none               &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
