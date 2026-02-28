@@ -19,7 +19,7 @@
 
 #define HM_TAPPING_TERM_FAST 200
 #define HM_PRIOR_IDLE 70
-#define HM_PRIOR_IDLE_NG 125
+#define HM_PRIOR_IDLE_NG 250
 #define BASE 0
 #define NAGI 1
 #define LOWER 2
@@ -106,7 +106,10 @@
         };
 
         // Naginata layer HRM (hold=modifier, tap=naginata key)
-        // Higher require-prior-idle-ms to avoid false mod activation during naginata chords
+        // require-prior-idle-ms=250: 直前にキーが押されていれば即座にtap解決
+        // → 薙刀式チョード中はng_pressが即発火し、親指シフトとのタイミング問題を回避
+        // hold-trigger-on-release削除: 不要な遅延を排除
+        // KEYS_TをHTKPから除外: 親指キー(SPACE/ENTER)がhold判定に干渉しない
 
         hm_ng_l: homerow_mods_naginata_left {
             compatible = "zmk,behavior-hold-tap";
@@ -117,8 +120,7 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
-            hold-trigger-key-positions = <KEYS_R KEYS_T>;
-            hold-trigger-on-release;
+            hold-trigger-key-positions = <KEYS_R>;
         };
 
         hm_ng_r: homerow_mods_naginata_right {
@@ -130,8 +132,7 @@
             tapping-term-ms = <HM_TAPPING_TERM>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
-            hold-trigger-key-positions = <KEYS_L KEYS_T>;
-            hold-trigger-on-release;
+            hold-trigger-key-positions = <KEYS_L>;
         };
 
         hm_ng_shift_l: hm_ng_shift_l {
