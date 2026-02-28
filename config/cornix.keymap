@@ -105,36 +105,6 @@
             hold-trigger-on-release;
         };
 
-        // Naginata layer HRM (hold=modifier, tap=naginata key)
-        // require-prior-idle-ms=250: 直前にキーが押されていれば即座にtap解決
-        // → 薙刀式チョード中はng_pressが即発火し、親指シフトとのタイミング問題を回避
-        // hold-trigger-on-release削除: 不要な遅延を排除
-        // KEYS_TをHTKPから除外: 親指キー(SPACE/ENTER)がhold判定に干渉しない
-
-        hm_ng_l: homerow_mods_naginata_left {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mod_nagi>, <&ng>;
-
-            flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
-            hold-trigger-key-positions = <KEYS_R>;
-        };
-
-        hm_ng_r: homerow_mods_naginata_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&mod_nagi>, <&ng>;
-
-            flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
-            quick-tap-ms = <200>;
-            require-prior-idle-ms = <HM_PRIOR_IDLE_NG>;
-            hold-trigger-key-positions = <KEYS_L>;
-        };
-
         hm_ng_shift_l: hm_ng_shift_l {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -344,13 +314,13 @@
 
             // ------------------------------------------------------------------------------------------------------------
             // |  NONE |  ESC  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   | NONE  | NONE  |
-            // |  Q    |  A/CTL|  S/A|  D/G |  F   |  G   |                   |  H   |  J    |  K/G  |  L/A |  ;/CTL|  P    |
+            // |  Q    |  A    |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |  ;    |  P    |
             // |  NONE |  Z    |  X  |  C   |  V   |  B   |  TRANS |  | TRANS |  N   |  M    |  ,    |  .   |  /    | NONE  |
             // |  NONE | NONE  | NONE| TRANS| 2/TAB| S/SPC|        |  |       | S/ENT| 3/BSP | NONE  | NONE | NONE  | NONE  |
 
             bindings = <
 &none  &ng  ESC  &ng W              &ng E            &ng R        &ng T                     &ng Y         &ng U             &ng I            &ng O   &none              &none
-&ng Q  &hm_ng_l LCTRL A  &hm_ng_l LALT S  &hm_ng_l LGUI D  &ng F        &ng G               &ng H         &ng J             &hm_ng_r RGUI K  &hm_ng_r RALT L  &hm_ng_r RCTRL SEMI  &ng P
+&ng Q  &ng A              &ng S            &ng D            &ng F        &ng G               &ng H         &ng J             &ng K            &ng L            &ng SEMI             &ng P
 &none  &ng  Z    &ng X              &ng C            &ng V        &ng B    &trans  &trans   &ng N         &ng M             &ng COMMA        &ng DOT &ng SLASH           &none
 &none  &none     &none              &trans           &lt 2  TAB   &ng SPACE                 &ng ENTER     &lt 3  BACKSPACE  &none            &none   &none               &none
             >;
