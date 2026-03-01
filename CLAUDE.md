@@ -56,25 +56,20 @@ HM_PRIOR_IDLE_NG     250ms  // 薙刀式HRMのrequire-prior-idle
 
 | ビヘイビア | flavor | 用途 |
 |-----------|--------|------|
-| `hm_l` / `hm_r` | tap-preferred | 左右のCTL/ALT/GUI HRM |
-| `hm_shift_l` / `hm_shift_r` | balanced | 左右のShift HRM |
-| `hm_ng_l` / `hm_ng_r` | tap-preferred | 薙刀式レイヤーのCTL/ALT/GUI HRM |
-| `hm_ng_shift_l` / `hm_ng_shift_r` | balanced | 薙刀式レイヤーのShift HRM |
+| `hm_l` / `hm_r` | tap-preferred | 左右のCTL/ALT/GUI HRM（BASEレイヤーのみ） |
+| `hm_shift_l` / `hm_shift_r` | balanced | 左右のShift HRM（BASEレイヤーのみ） |
 
-### 薙刀式HRMの特徴
-
-- `hold-trigger-key-positions` から `KEYS_T`（親指キー）を除外 → 親指シフトとの干渉防止
-- `require-prior-idle-ms=250` → コード入力中の誤tap/hold判定防止
-- `hold-trigger-on-release` なし → 不要な遅延を排除
-- hold時は `mod_nagi` マクロ経由でBASEレイヤーへ一時切替し、モディファイア送信後NAGIに復帰
+> NAGIレイヤーではHRMを全廃し、すべて `&ng` プレーンキーに統一している（親指シフトとのタイミング競合を排除するため）。
 
 ## 薙刀式レイヤー操作
 
-| 操作 | コンボ |
-|------|--------|
-| 薙刀式ON | H+J キー同時押し（key-positions 18+19） |
-| 薙刀式OFF | F+G キー同時押し（key-positions 16+17） |
-| ESC + 英字モード | W+R キー同時押し（key-positions 2+4、BASE/NAGIレイヤー共通） |
+| 操作 | コンボ | 有効レイヤー |
+|------|--------|-------------|
+| 薙刀式ON | H+J キー同時押し（key-positions 18+19） | BASE |
+| 薙刀式OFF | F+G キー同時押し（key-positions 16+17） | BASE / NAGI |
+| ESC + 英字モード | W+R キー同時押し（key-positions 2+4） | BASE / NAGI |
+| 英字モード | X+C キー同時押し（LANGUAGE_2送信 + BASEレイヤー切替） | 全レイヤー |
+| 日本語モード | M+J キー同時押し（LANGUAGE_1送信のみ、レイヤー切替なし） | 全レイヤー |
 
 ## サブエージェント使用ガイドライン
 
