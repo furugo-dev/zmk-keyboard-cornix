@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -33,7 +33,7 @@ jobs:
       - name: Determine release type
         id: reltype
         run: |
-          TAG="${GITHUB_REF_NAME}"
+          TAG="${GITHUB_REF_NAME#v}"
           if [[ "$TAG" =~ [a-zA-Z] ]]; then
             echo "prerelease=true" >> $GITHUB_OUTPUT
             echo "make_latest=false" >> $GITHUB_OUTPUT
