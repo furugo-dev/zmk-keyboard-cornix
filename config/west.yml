@@ -24,6 +24,7 @@ manifest:
     - name: zmk-naginata-v17
       remote: furugo-dev
       revision: main
+      clone-depth: 1
     #- name: zmk-rgbled-widget
     #  remote: hitsmaxft
     #  revision: main
