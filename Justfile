@@ -11,6 +11,9 @@ kb := absolute_path('kb')
 module_base := "${ZMK_LIB_PREFIX:=zmk_exts}"
 zmk_base := "${ZMK_LIB_PREFIX}/zmk/app"
 
+# Docker build workspace (west workspace cached for container builds)
+docker_ws := absolute_path('.docker-workspace')
+
 # parse combos.dtsi and adjust settings to not run out of slots
 _parse_combos:
     #!/usr/bin/env bash
@@ -99,6 +102,80 @@ build expr *west_args: _parse_combos
     echo "$targets" | while IFS="," read -r board shield snippet artifact; do
         just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
     done
+
+# initialize west workspace inside Docker container (run once)
+docker-init:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    mkdir -p "{{ docker_ws }}"
+    docker run --rm \
+        -v "{{ docker_ws }}:/workspace" \
+        -v "{{ justfile_directory() }}:/zmk-config:ro" \
+        zmkfirmware/zmk-build-arm:stable \
+        bash -c "
+            cd /workspace && \
+            west init -l /zmk-config/config && \
+            west update --fetch-opt=--filter=blob:none
+        "
+    echo "Docker workspace initialized at {{ docker_ws }}"
+
+# build firmware inside Docker container
+docker-build expr *west_args: _parse_combos
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ ! -d "{{ docker_ws }}/.west" ]]; then
+        echo "Docker workspace not initialized. Run: just docker-init" >&2
+        exit 1
+    fi
+    targets=$(just _parse_targets {{ expr }})
+    [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
+    echo "$targets" | while IFS="," read -r board shield snippet artifact; do
+        just _docker_build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
+    done
+
+# build single target inside Docker container (internal)
+_docker_build_single $board $shield $snippet $artifact *west_args:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    artifact="${artifact:-${shield:+${shield// /+}-}${board}}"
+    build_dir="{{ build }}/$artifact"
+    mkdir -p "{{ out }}" "$build_dir"
+
+    SNIPPET_ARGS="${snippet:+-S \"$snippet\"}"
+    SHIELD_ARGS="${shield:+-DSHIELD=\"$shield\"}"
+    # Match GitHub CI: ZMK_CONFIG=config/, ZMK_EXTRA_MODULES=repo root
+    CMAKE_ARGS="-DZMK_CONFIG=/zmk-config/config -DZMK_EXTRA_MODULES=/zmk-config"
+
+    echo "Building $artifact in Docker..."
+    docker run --rm \
+        -v "{{ docker_ws }}:/workspace" \
+        -v "{{ justfile_directory() }}:/zmk-config:ro" \
+        -v "$build_dir:/build" \
+        -v "{{ out }}:/firmware" \
+        zmkfirmware/zmk-build-arm:stable \
+        bash -c "
+            set -e
+            git config --global --add safe.directory '*'
+            export ZEPHYR_BASE=/workspace/zephyr
+            export CMAKE_PREFIX_PATH=/workspace/zephyr/share/zephyr-package/cmake
+            cd /workspace && \
+            west build \
+                -s zmk/app \
+                -d /build \
+                -b $board \
+                {{ west_args }} \
+                ${SNIPPET_ARGS} \
+                -- \
+                ${CMAKE_ARGS} \
+                ${SHIELD_ARGS} && \
+            if [[ -f /build/zephyr/zmk.uf2 ]]; then \
+                cp /build/zephyr/zmk.uf2 /firmware/$artifact.uf2 && \
+                echo \"Saved /firmware/$artifact.uf2\"; \
+            else \
+                cp /build/zephyr/zmk.bin /firmware/$artifact.bin && \
+                echo \"Saved /firmware/$artifact.bin\"; \
+            fi
+        "
 
 # clear build cache and artifacts
 clean:
