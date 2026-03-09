@@ -7,3 +7,9 @@ result
 target
 
 firmware
+
+# Docker build workspace (west workspace for container builds)
+.docker-workspace/
+
+# Build output
+output/
