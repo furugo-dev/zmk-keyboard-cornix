@@ -1,0 +1,51 @@
+draw_config:
+  key_w: 60
+  key_h: 56
+  split_gap: 30
+  combo_w: 28
+  combo_h: 26
+  n_legends: 2
+
+parse_config:
+  hold_tap_excluded:
+    - ng
+  zmk_keycode_map:
+    LANGUAGE_1: "Lang1"
+    LANGUAGE_2: "Lang2"
+    INTERNATIONAL_4: "Int4"
+    INTERNATIONAL_5: "Int5"
+    # Symbols
+    HASH: "#"
+    AT: "@"
+    EXCL: "!"
+    QUESTION: "?"
+    DLLR: "$"
+    PRCNT: "%"
+    CARET: "^"
+    AMPS: "&"
+    ASTRK: "*"
+    PLUS: "+"
+    MINUS: "-"
+    EQUAL: "="
+    UNDER: "_"
+    PIPE: "|"
+    TILDE: "~"
+    GRAVE: "`"
+    # Brackets / quotes
+    LPAR: "("
+    RPAR: ")"
+    LBKT: "["
+    RBKT: "]"
+    LBRC: "{"
+    RBRC: "}"
+    LT: "<"
+    GT: ">"
+    DQT: '"'
+    SQT: "'"
+    # Punctuation
+    DOT: "."
+    COMMA: ","
+    SEMI: ";"
+    COLON: ":"
+    SLASH: "/"
+    BACKSLASH: "\\"

@@ -1,0 +1,33 @@
+name: Update keymap SVG
+
+on:
+  push:
+    paths:
+      - "config/cornix.keymap"
+      - "draw/**"
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate keymap SVG
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/work" \
+            -w /work \
+            python:3.12-slim \
+            bash -c "pip install -q keymap-drawer pyyaml && python draw/post-process-nagi.py cornix"
+
+      - name: Commit updated SVG
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: update keymap SVG [skip ci]"
+          file_pattern: "docs/img/cornix-keymap.svg"
