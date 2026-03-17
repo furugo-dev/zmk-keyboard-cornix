@@ -203,6 +203,16 @@ draw keyboard:
     echo "generated svg for ${KBOARD}"     
     keymap -c "{{ draw }}/config-{{ keyboard }}.yaml" draw "{{ draw }}/{{ keyboard }}.yaml" -z "${KBOARD}" >"{{ draw }}/{{ keyboard }}.svg"
 
+# docker 内で keymap 画像を生成
+docker-draw keyboard="cornix":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    docker run --rm \
+        -v "{{justfile_directory()}}:/work" \
+        -w /work \
+        python:3.12-slim \
+        bash -c "pip install -q keymap-drawer pyyaml && python draw/post-process-nagi.py {{keyboard}}"
+
 # initialize west
 init:
     west init -l config
