@@ -374,7 +374,7 @@
             // |  BT0  |  BT1  | BT2 | TRANS| TRANS| TRANS|        |  |       | TRANS| TRANS | TRANS | NONE | NONE  | BTCLR |
 
             bindings = <
-&kp none       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
+&none       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
 &kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none     &none
 &none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &zh_arrow        &zj_arrow       &zk_arrow      &zl_arrow         &trans    &trans
 &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none     &bt BT_CLR
