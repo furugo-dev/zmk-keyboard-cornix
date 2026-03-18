@@ -46,7 +46,7 @@ _parse_targets $expr:
     #!/usr/bin/env bash
     attrs="[.board, .shield, .snippet, .\"artifact-name\"]"
     filter="(($attrs | map(. // [.]) | combinations), ((.include // {})[] | $attrs)) | join(\",\")"
-    echo "$(yq -r "$filter" build.yaml | grep -v "^," | grep -i "${expr/#all/.*}")"
+    echo "$(yq -o=json build.yaml | jq -r "$filter" | grep -v "^," | grep -i "${expr/#all/.*}")"
 
 # build firmware for single board & shield combination
 # TODO use artifact
