@@ -92,4 +92,16 @@ HM_PRIOR_IDLE_NG     250ms  // 薙刀式HRMのrequire-prior-idle
 3. `firmware/cornix_right.uf2` を右半分にドラッグ＆ドロップ
 4. 両半分を同時にリセット
 
-> v2.3以降はSoftDevice復元不要。直接フラッシュ可能。
+
+## バージョニング
+
+`v<major>.<minor>.<patch>` 形式のタグで管理する。
+
+| 変更内容 | バージョン |
+|---------|-----------|
+| ビルド環境の大幅変更（Zephyr メジャーバージョン更新等） | major |
+| キーマップの変更・機能追加 | minor |
+| バグ修正・設定の微調整 | patch |
+
+- タグを `v*.*` 形式でプッシュすると `release_with_tag.yml` が発火し、自動ビルド＆リリースが作成される
+- プレリリース: タグに英字を含む場合（例: `v2.0.0-alpha`）は prerelease 扱い
