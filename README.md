@@ -185,8 +185,6 @@ just update            # west 依存関係を更新
 3. `firmware/cornix_right.uf2` を右半分にドラッグ＆ドロップ
 4. 両半分を同時にリセット
 
-> v2.3 以降は SoftDevice の復元不要。直接フラッシュ可能。
-
 ---
 
 ## ファイル構成
