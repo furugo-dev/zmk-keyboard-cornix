@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
   release:
     needs: build
     runs-on: ubuntu-latest
