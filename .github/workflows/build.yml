@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test/leds-zephyr3-compat
     paths:
       - "boards/**"
       - "config/**"
