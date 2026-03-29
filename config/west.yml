@@ -25,10 +25,10 @@ manifest:
       remote: furugo-dev
       revision: main
       clone-depth: 1
-    - name: zmk-rgbled-widget
-      remote: hitsmaxft
-      revision: main
-      clone-depth: 1
+    #- name: zmk-rgbled-widget
+    #  remote: hitsmaxft
+    #  revision: main
+    #  clone-depth: 1
     - name: zmk-dongle-display
       remote: hitsmaxft
       revision: zephyr4
