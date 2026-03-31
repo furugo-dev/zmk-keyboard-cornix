@@ -225,14 +225,8 @@
         default_layer {
             display-name = "Base";
 
-            // ------------------------------------------------------------------------------------------------------------
-            // |  NONE | ESC/L2|  L  |  U   |  F   |  .   |                   |  ;   |  W    |  R    |  Y   | NONE  | NONE  |
-            // |  Q    |  E    |  I  |  A   |  O   |  -   |                   |  K   |  T    |  N    |  S   |  H    |  P    |
-            // |  NONE |  Z    |  X  |  C   |  V   |  ,   |  MUTE  |  | LOCK  |  G   |  D    |  M    |  J   |  B    | NONE  |
-            // |  BT0  | NONE  | NONE| 4/ESC| 2/TAB| S/SPC|        |  |       | S/ENT| 3/BSP | NONE  | NONE | NONE  |  BT1  |
-
             bindings = <
-&none         &none          &kp L         &kp U         &kp F        &kp DOT                                &kp SEMI                   &kp W             &kp R            &kp Y         &none          &none
+&none         &kp Q          &kp L         &kp U         &kp F        &kp DOT                                &kp SEMI                   &kp W             &kp R            &kp Y         &kp P          &none
 &kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                              &kp K                      &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none         &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &kp C_AL_LOCK &kp G                      &kp D             &kp M            &kp J         &kp B          &none
 &bt BT_SEL 0  &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt BT_SEL 1
@@ -243,17 +237,11 @@
         naginata_layer {
             display-name = "Naginata";
 
-            // ------------------------------------------------------------------------------------------------------------
-            // |  NONE |  ESC  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   | NONE  | NONE  |
-            // |  Q    |  A    |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |  ;    |  P    |
-            // |  NONE |  Z    |  X  |  C   |  V   |  B   |  TRANS |  | TRANS |  N   |  M    |  ,    |  .   |  /    | NONE  |
-            // |  NONE | NONE  | NONE| TRANS| 2/TAB| S/SPC|        |  |       | S/ENT| 3/BSP | NONE  | NONE | NONE  | NONE  |
-
             bindings = <
-&none  &none  &ng W  &ng E  &ng R  &ng T                   &ng Y   &ng U   &ng I            &ng O   &none              &none
-&ng Q  &ng A  &ng S  &ng D  &ng F  &ng G                   &ng H   &ng J   &ng K            &ng L            &ng SEMI             &ng P
-&none  &ng Z  &ng X  &ng C  &ng V  &ng B  &trans  &trans   &ng N   &ng M   &ng COMMA        &ng DOT &ng SLASH           &none
-&none  &none     &none              &trans           &lt 2  TAB   &ng SPACE                 &ng ENTER     &lt 3  BACKSPACE  &none            &none   &none               &none
+&none  &ng Q  &ng W  &ng E  &ng R        &ng T                     &ng Y      &ng U             &ng I      &ng O    &ng P      &none
+&ng Q  &ng A  &ng S  &ng D  &ng F        &ng G                     &ng H      &ng J             &ng K      &ng L    &ng SEMI   &ng P
+&none  &ng Z  &ng X  &ng C  &ng V        &ng B     &trans  &trans  &ng N      &ng M             &ng COMMA  &ng DOT  &ng SLASH  &none
+&none  &none  &none  &trans &lt 2  TAB   &ng SPACE                 &ng ENTER  &lt 3  BACKSPACE  &none      &none    &none      &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -261,18 +249,11 @@
         lower_layer {
             display-name = "Symbols";
 
-            // TODO: Some binds are waiting for shifted keycode support.
-            // -------------------------------
-            // |  NONE | NONE  |  7  |  8   |  9   | NONE |                   | NONE |  +    |  *    |  ~   | NONE  | NONE  |
-            // |  #    |  0    |  4  |  5   |  6   |  .   |                   |  <   |  !    |  =    |  .   |  /    |  |    |
-            // |  NONE | NONE  |  1  |  2   |  3   |  %   |  TRANS |  | TRANS |  >   |  ?    |  :    |  ;   |  \    | NONE  |
-            // |  NONE | NONE  | NONE| TRANS| TRANS| TRANS|        |  |       | TRANS| NONE  | NONE  | NONE | NONE  | NONE  |
-
             bindings = <
-&none    &none   &kp N7  &kp N8  &kp N9  &none                      &none   &kp PLUS      &kp ASTRK  &kp TILDE  &none           &none 
-&kp HASH &kp N0  &kp N4  &kp N5  &kp N6  &kp DOT                    &kp LT  &kp QUESTION  &kp EQUAL  &kp DOT    &kp SLASH       &kp PIPE
-&none    &none   &kp N1  &kp N2  &kp N3  &kp PRCNT  &trans  &trans  &kp GT  &kp EXCL      &kp COLON  &kp SEMI   &kp BACKSLASH   &none
-&none    &none   &none   &trans  &trans  &trans                     &trans  &trans        &trans     &none      &none           &none
+&none    &none     &kp N7  &kp N8  &kp N9  &none                      &none   &kp PLUS      &kp ASTRK  &kp TILDE  &kp PIPE        &none 
+&kp HASH &kp N0    &kp N4  &kp N5  &kp N6  &kp DOT                    &kp LT  &kp QUESTION  &kp EQUAL  &kp DOT    &kp SLASH       &kp PIPE
+&none    &kp HASH  &kp N1  &kp N2  &kp N3  &kp PRCNT  &trans  &trans  &kp GT  &kp EXCL      &kp COLON  &kp SEMI   &kp BACKSLASH   &none
+&none    &none     &none   &trans  &trans  &trans                     &trans  &trans        &trans     &none      &none           &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -280,17 +261,11 @@
         raise_layer {
             display-name = "raise";
 
-            // ------------------------------------------------------------------------------------------------------------
-            // | TRANS | NONE  |  [  |  "   |  ]   | NONE |                   |  F5  |  F4   |  F2   |  F10 |  F11  |  F12  |
-            // |  @    |  ^    |  (  |  '   |  )   |  $   |                   | LEFT | DOWN  |  UP   | RIGHT|  DEL  | NONE  |
-            // | TRANS |  &    |  {  |  `   |  }   |  _   |  TRANS |  | TRANS | HOME | PGUP  | PGDN  | END  | NONE  | NONE  |
-            // |  NONE | NONE  | NONE| TRANS| TRANS| TRANS|        |  |       | TRANS| TRANS | TRANS | NONE | NONE  | NONE  |
-
             bindings = <
-&none   &none      &kp LBKT  &kp DQT    &kp RBKT  &none                      &kp F5  &kp F4    &kp F2     &kp F10   &none    &none
-&kp AT  &kp CARET  &kp LPAR  &kp SQT    &kp RPAR  &kp DLLR                   &ng LEFT  &ng DOWN   &ng UP  &ng RIGHT &kp DEL  &kp F12
-&trans  &kp AMPS   &kp LBRC  &kp GRAVE  &kp RBRC  &kp UNDER  &trans  &trans  &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &kp F11  &none
-&none   &none      &none     &trans     &trans     &trans                     &trans  &trans    &trans     &none      &none     &none
+&none   &kp AT     &kp LBKT  &kp DQT    &kp RBKT  &none                      &kp F5    &kp F4     &kp F2     &kp F10   &kp F12  &none
+&kp AT  &kp CARET  &kp LPAR  &kp SQT    &kp RPAR  &kp DLLR                   &ng LEFT  &ng DOWN   &ng UP     &ng RIGHT &kp DEL  &kp F12
+&none   &kp AMPS   &kp LBRC  &kp GRAVE  &kp RBRC  &kp UNDER  &trans  &trans  &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &kp F11  &none
+&none   &none      &none     &trans     &trans     &trans                    &trans    &trans     &trans     &none      &none   &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
@@ -298,14 +273,8 @@
         function_layer {
             display-name = "Function";
 
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | CLCK  | NONE  |  F7 |  F8  |  F9  | NONE |                   | NONE | LCLK  | RCLK  | NONE | NONE  | NONE  |
-            // |  F12  |  F10  |  F4 |  F5  |  F6  | NONE |                   | M_L  | M_D   | M_U   | M_R  | NONE  | NONE  |
-            // |  NONE |  F11  |  F1 |  F2  |  F3  | NONE |  TRANS |  | TRANS | NONE | NONE  | NONE  | NONE | EP_ON | LOCK  |
-            // |  BT0  |  BT1  | BT2 | TRANS| TRANS| TRANS|        |  |       | TRANS| TRANS | TRANS | NONE | NONE  | BTCLR |
-
             bindings = <
-&none       &none          &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
+&bt BT_CLR     &kp F12        &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
 &kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none     &none
 &none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &zh_arrow        &zj_arrow       &zk_arrow      &zl_arrow         &trans    &trans
 &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none     &bt BT_CLR
@@ -314,12 +283,6 @@
 
         Debug_layer {
             display-name = "Debug";
-
-            // ----------------------------------------------------------------------------------------------------------------------------
-            // | BTCLR |  BT0  | BT1 |  BT2 |  BT3 |  BT4 |                   | NONE | NONE  | NONE  | NONE | NONE  | NONE  |
-            // |  NONE | NONE  | NONE| NONE | NONE | NONE |                   | NONE | NONE  | NONE  | NONE | NONE  | NONE  |
-            // |  NONE | NONE  | NONE| NONE | NONE | BOOT |  TRANS |  | TRANS | BOOT | NONE  | NONE  | NONE | NONE  | NONE  |
-            // |  NONE | NONE  | NONE| NONE | NONE | NONE |        |  |       | NONE | NONE  |  7    | NONE | NONE | NONE  |
 
             bindings = <
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &none        &none  &none   &none  &none  &none
