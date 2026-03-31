@@ -1,7 +1,7 @@
 default:
     @just --list --unsorted
 
-config := absolute_path('config2')
+config := absolute_path('config')
 build := absolute_path('.build')
 out := absolute_path('firmware')
 draw := absolute_path('draw')
@@ -68,9 +68,7 @@ _build_single $board $shield $snippet $artifact *west_args:
     CMAKE_ARGS=""
 
     if [[ -f zephyr/module.yml ]] ; then
-        module_path_ext="$(pwd)/"
-        echo "Found local module $module_path_ext, append to west build command"
-        export ZMK_EXTRA_MODULES=$(pwd)
+        echo "Found local module $(pwd), append to west build command"
         CMAKE_ARGS="${CMAKE_ARGS} -DZMK_EXTRA_MODULES=$(pwd)"
     fi
     echo "Building firmware for $artifact..."
@@ -88,8 +86,6 @@ _build_single $board $shield $snippet $artifact *west_args:
     fi
     mkdir -p "{{ out }}" && cp "$build_output" "$build_artifact"
     echo "$build_output saved to $build_artifact"
-    cp $build_dir/compile_commands.json ./
-    echo "copy clangd db json from $build_dir/compile_commands.json"
 
 # build firmware for matching targets (parallel)
 build expr *west_args: _parse_combos
@@ -99,8 +95,10 @@ build expr *west_args: _parse_combos
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
 
+    first_artifact=""
     pids=()
     while IFS="," read -r board shield snippet artifact; do
+        [[ -z "$first_artifact" ]] && first_artifact="$artifact"
         just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }} &
         pids+=($!)
     done <<< "$targets"
@@ -109,6 +107,11 @@ build expr *west_args: _parse_combos
     for pid in "${pids[@]}"; do
         wait "$pid" || failed=1
     done
+
+    if [[ $failed -eq 0 ]] && [[ -f "{{ build }}/$first_artifact/compile_commands.json" ]]; then
+        cp "{{ build }}/$first_artifact/compile_commands.json" ./
+        echo "Copied clangd db from $first_artifact"
+    fi
     exit $failed
 
 # initialize west workspace inside Docker container (run once)
@@ -121,6 +124,7 @@ docker-init:
         -v "{{ justfile_directory() }}:/zmk-config:ro" \
         zmkfirmware/zmk-build-arm:stable \
         bash -c "
+            git config --global --add safe.directory '*' && \
             cd /workspace && \
             west init -l /zmk-config/config && \
             west update --fetch-opt=--filter=blob:none
@@ -256,21 +260,6 @@ list:
     for item in arr:
         (board, shield, snippet, artifact) = item.split(',')
         print(f"{artifact}:\n\tboard={board}, shield={shield}, snippet={snippet}")
-list_py:
-    #!/usr/bin/env python3
-    import subprocess
-
-    # Run the command and capture its output
-    result = subprocess.run(['just', '_parse_targets', 'all'], capture_output=True, text=True, check=True)
-
-    # Split output into a list by lines
-    arr = result.stdout.splitlines()
-
-    # Print each line
-    for item in arr:
-        (board, shield, snippet, artifact) = item.split(',')
-        print(f"{artifact}:\n\tboard={board}, shield={shield}, snippet={snippet}")
-
 
 # update west
 update: update-config
