@@ -13,3 +13,4 @@ firmware
 
 # Build output
 output/
+.DS_Store
