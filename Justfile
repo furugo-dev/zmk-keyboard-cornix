@@ -91,17 +91,25 @@ _build_single $board $shield $snippet $artifact *west_args:
     cp $build_dir/compile_commands.json ./
     echo "copy clangd db json from $build_dir/compile_commands.json"
 
-# build firmware for matching targets
+# build firmware for matching targets (parallel)
 build expr *west_args: _parse_combos
     #!/usr/bin/env bash
     set -euo pipefail
     targets=$(just _parse_targets {{ expr }})
 
-
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS="," read -r board shield snippet artifact; do
-        just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
+
+    pids=()
+    while IFS="," read -r board shield snippet artifact; do
+        just _build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }} &
+        pids+=($!)
+    done <<< "$targets"
+
+    failed=0
+    for pid in "${pids[@]}"; do
+        wait "$pid" || failed=1
     done
+    exit $failed
 
 # initialize west workspace inside Docker container (run once)
 docker-init:
@@ -119,7 +127,7 @@ docker-init:
         "
     echo "Docker workspace initialized at {{ docker_ws }}"
 
-# build firmware inside Docker container
+# build firmware inside Docker container (parallel)
 docker-build expr *west_args: _parse_combos
     #!/usr/bin/env bash
     set -euo pipefail
@@ -127,11 +135,25 @@ docker-build expr *west_args: _parse_combos
         echo "Docker workspace not initialized. Run: just docker-init" >&2
         exit 1
     fi
+    docker run --rm \
+        -v "{{ docker_ws }}:/workspace" \
+        -v "{{ justfile_directory() }}:/zmk-config:ro" \
+        zmkfirmware/zmk-build-arm:stable \
+        bash -c "git config --global --add safe.directory '*' && cd /workspace && west update --fetch-opt=--filter=blob:none"
     targets=$(just _parse_targets {{ expr }})
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS="," read -r board shield snippet artifact; do
-        just _docker_build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }}
+
+    pids=()
+    while IFS="," read -r board shield snippet artifact; do
+        just _docker_build_single "$board" "$shield" "$snippet" "$artifact" {{ west_args }} &
+        pids+=($!)
+    done <<< "$targets"
+
+    failed=0
+    for pid in "${pids[@]}"; do
+        wait "$pid" || failed=1
     done
+    exit $failed
 
 # build single target inside Docker container (internal)
 _docker_build_single $board $shield $snippet $artifact *west_args:
