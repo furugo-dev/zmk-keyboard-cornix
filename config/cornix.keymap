@@ -154,6 +154,21 @@
             #binding-cells = <0>;
             bindings = <&macro_tap &kp LANGUAGE_2 &to BASE>;
         };
+        bt_mac: bt_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 0 &ng F16>;
+        };
+        bt_win: bt_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 1 &ng F15>;
+        };
+        bt_ios: bt_ios {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &bt BT_SEL 2 &ng F20>;
+        };
         zh_arrow: zh_arrow {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -229,7 +244,7 @@
 &none         &kp Q          &kp L         &kp U         &kp F        &kp DOT                                &kp SEMI                   &kp W             &kp R            &kp Y         &kp P          &none
 &kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                              &kp K                      &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none         &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &kp C_AL_LOCK &kp G                      &kp D             &kp M            &kp J         &kp B          &none
-&bt BT_SEL 0  &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt BT_SEL 1
+&bt_mac       &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt_win
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_encoder>;
         };
@@ -277,7 +292,7 @@
 &bt BT_CLR     &kp F12        &kp F7         &kp F8         &kp F9         &none                          &none            &mkp LCLK       &mkp RCLK      &none             &none     &none
 &kp F12        &kp F10        &kp F4         &kp F5         &kp F6         &none                          &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_UP   &mmv MOVE_RIGHT   &none     &none
 &none          &kp F11        &kp F1         &kp F2         &kp F3         &none        &trans  &trans    &zh_arrow        &zj_arrow       &zk_arrow      &zl_arrow         &trans    &trans
-&bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none     &bt BT_CLR
+&bt_mac        &bt_win        &bt_ios        &trans         &trans         &trans                         &trans           &trans          &trans         &none             &none     &bt BT_CLR
             >;
         };
 
@@ -285,7 +300,7 @@
             display-name = "Debug";
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &none        &none  &none   &none  &none  &none
+&bt BT_CLR  &bt_mac       &bt_win       &bt_ios       &bt BT_SEL 3  &bt BT_SEL 4                  &none        &none  &none   &none  &none  &none
 &none       &none         &none         &none         &none         &none                         &none        &none  &none   &none  &none  &none
 &none       &none         &none         &none         &none         &bootloader   &trans  &trans  &bootloader  &none  &none   &none  &none  &none
 &none       &none         &none         &none         &none         &none                         &none        &none  &kp N7  &none  &none  &none
