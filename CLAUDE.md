@@ -43,23 +43,7 @@ just update            # west依存関係を更新
 
 ## HRM（Home Row Mods）設計方針
 
-### タイミング定数
-
-```c
-HM_TAPPING_TERM      250ms  // CTL/ALT/GUI用
-HM_TAPPING_TERM_FAST 200ms  // Shift用
-HM_PRIOR_IDLE         70ms  // 通常HRMのrequire-prior-idle
-HM_PRIOR_IDLE_NG     250ms  // 薙刀式HRMのrequire-prior-idle
-```
-
-### ビヘイビア一覧
-
-| ビヘイビア | flavor | 用途 |
-|-----------|--------|------|
-| `hm_l` / `hm_r` | tap-preferred | 左右のCTL/ALT/GUI HRM（BASEレイヤーのみ） |
-| `hm_shift_l` / `hm_shift_r` | balanced | 左右のShift HRM（BASEレイヤーのみ） |
-
-> NAGIレイヤーではHRMを全廃し、すべて `&ng` プレーンキーに統一している（親指シフトとのタイミング競合を排除するため）。
+NAGIレイヤーではHRMを全廃し、すべて `&ng` プレーンキーに統一している（親指シフトとのタイミング競合を排除するため）。タイミング定数・ビヘイビア定義は `config/cornix.keymap` を参照。
 
 ## 薙刀式レイヤー操作
 
@@ -70,6 +54,18 @@ HM_PRIOR_IDLE_NG     250ms  // 薙刀式HRMのrequire-prior-idle
 | ESC + 英字モード | W+R キー同時押し（key-positions 2+4） | BASE / NAGI |
 | 英字モード | X+C キー同時押し（LANGUAGE_2送信 + BASEレイヤー切替） | 全レイヤー |
 | 日本語モード | M+J キー同時押し（LANGUAGE_1送信のみ、レイヤー切替なし） | 全レイヤー |
+
+## Bluetooth / OS切換えマクロ
+
+BT接続先を切り替えると同時に薙刀式のOS設定も自動で切換わる。
+
+| マクロ | BT接続先 | 送信キー | 対象OS |
+|--------|---------|---------|--------|
+| `bt_mac` | BT_SEL 0 | `&ng F16` | macOS |
+| `bt_win` | BT_SEL 1 | `&ng F15` | Windows |
+| `bt_ios` | BT_SEL 2 | `&ng F20` | iOS |
+
+これらのマクロはBASEレイヤーの親指キー端・FUNCTIONレイヤー・DEBUGレイヤーに配置されている。
 
 ## サブエージェント使用ガイドライン
 
@@ -84,14 +80,6 @@ HM_PRIOR_IDLE_NG     250ms  // 薙刀式HRMのrequire-prior-idle
 - Explore エージェント（コードベース探索）は常に `haiku` を使用する
 - 検索結果を確認するだけのリサーチは `haiku` で十分
 - コード生成・編集を伴う場合のみ `sonnet` 以上を使用する
-
-## フラッシュ手順
-
-1. キーボードをUF2ブートローダーモードに（リセットボタンをダブルタップ）
-2. `firmware/cornix_left.uf2` を左半分にドラッグ＆ドロップ
-3. `firmware/cornix_right.uf2` を右半分にドラッグ＆ドロップ
-4. 両半分を同時にリセット
-
 
 ## バージョニング
 
