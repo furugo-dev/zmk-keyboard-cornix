@@ -12,12 +12,13 @@
 
 // tap windows for ctl alt and gui
 
-#define HM_TAPPING_TERM 250
+#define HM_TAPPING_TERM_LAYER_TAP 250
+#define HM_TAPPING_TERM_MOD 200
 #define HM_TAPPING_REPEAT 210
 
 // quick tapping for shift
 
-#define HM_TAPPING_TERM_FAST 200
+#define HM_TAPPING_TERM_SHIFT 200
 #define HM_PRIOR_IDLE 70
 #define HM_PRIOR_IDLE_NG 250
 #define BASE 0
@@ -48,7 +49,7 @@
             bindings = <&kp>, <&kp>;
 
             flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
+            tapping-term-ms = <HM_TAPPING_TERM_MOD>;
             quick-tap-ms = <200>;                // repeat on tap-into-hold
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -61,7 +62,7 @@
             bindings = <&kp>, <&kp>;
 
             flavor = "tap-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
+            tapping-term-ms = <HM_TAPPING_TERM_MOD>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
@@ -78,7 +79,7 @@
             bindings = <&kp>, <&kp>;
 
             flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            tapping-term-ms = <HM_TAPPING_TERM_SHIFT>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_R KEYS_T>;
@@ -91,7 +92,7 @@
             bindings = <&kp>, <&kp>;
 
             flavor = "balanced";
-            tapping-term-ms = <HM_TAPPING_TERM_FAST>;
+            tapping-term-ms = <HM_TAPPING_TERM_SHIFT>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
@@ -107,7 +108,7 @@
             bindings = <&mo>, <&kp>;
 
             flavor = "hold-preferred";
-            tapping-term-ms = <HM_TAPPING_TERM>;
+            tapping-term-ms = <HM_TAPPING_TERM_LAYER_TAP>;
             quick-tap-ms = <200>;
         };
 
