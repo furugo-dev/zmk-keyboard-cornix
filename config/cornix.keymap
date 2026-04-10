@@ -13,6 +13,7 @@
 // tap windows for ctl alt and gui
 
 #define HM_TAPPING_TERM 250
+#define HM_TAPPING_TERM_CA 200
 #define HM_TAPPING_REPEAT 210
 
 // quick tapping for shift
@@ -62,6 +63,32 @@
 
             flavor = "tap-preferred";
             tapping-term-ms = <HM_TAPPING_TERM>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_L KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_l_ca: homerow_mods_left_ctrl_alt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "tap-preferred";
+            tapping-term-ms = <HM_TAPPING_TERM_CA>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <HM_PRIOR_IDLE>;
+            hold-trigger-key-positions = <KEYS_R KEYS_T>;
+            hold-trigger-on-release;
+        };
+
+        hm_r_ca: homerow_mods_right_ctrl_alt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+
+            flavor = "tap-preferred";
+            tapping-term-ms = <HM_TAPPING_TERM_CA>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <HM_PRIOR_IDLE>;
             hold-trigger-key-positions = <KEYS_L KEYS_T>;
@@ -242,7 +269,7 @@
 
             bindings = <
 &none         &kp Q          &kp L         &kp U         &kp F        &kp DOT                                &kp SEMI                   &kp W             &kp R            &kp Y         &kp P          &none
-&kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &kp MINUS                              &kp K                      &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
+&kp Q         &hm_l_ca LCTRL E  &hm_l_ca LALT I  &hm_l LGUI A  &kp O        &kp MINUS                              &kp K                      &kp T             &hm_r RGUI N     &hm_r_ca RALT S  &hm_r_ca RCTRL H  &kp P
 &none         &kp Z          &kp X         &kp C         &kp V        &kp COMMA    &kp C_MUTE  &kp C_AL_LOCK &kp G                      &kp D             &kp M            &kp J         &kp B          &none
 &bt_mac       &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER    &lt 3  BACKSPACE  &none            &none         &none          &bt_win
             >;
