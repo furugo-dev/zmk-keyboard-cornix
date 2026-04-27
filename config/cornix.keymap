@@ -118,10 +118,10 @@
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
         };
 
-        comma_morph: comma_morph {
+        comma_dot_morph: comma_dot_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp MINUS>;
+            bindings = <&kp COMMA>, <&kp DOT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -257,7 +257,7 @@
 
             bindings = <
 &none         &kp Q          &kp L         &kp U         &kp F        &kp DOT                              &kp MINUS              &kp W             &kp R            &kp Y         &kp P          &none
-&kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &comma_morph                         &kp K                  &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
+&kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &comma_dot_morph                         &kp K                  &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none         &kp Z          &kp X         &kp C         &kp V        &kp SEMI   &kp C_MUTE  &kp C_AL_LOCK &kp G                  &kp D             &kp M            &kp J         &kp B          &none
 &bt_mac       &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER  &lt 3  BACKSPACE  &none            &none         &none          &bt_win
             >;
