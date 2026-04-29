@@ -52,8 +52,6 @@ NAGIレイヤーではHRMを全廃し、すべて `&ng` プレーンキーに統
 | 薙刀式ON | H+J キー同時押し（key-positions 18+19） | BASE |
 | 薙刀式OFF | F+G キー同時押し（key-positions 16+17） | BASE / NAGI |
 | ESC + 英字モード | W+R キー同時押し（key-positions 2+4） | BASE / NAGI |
-| 英字モード | X+C キー同時押し（LANGUAGE_2送信 + BASEレイヤー切替） | 全レイヤー |
-| 日本語モード | M+J キー同時押し（LANGUAGE_1送信のみ、レイヤー切替なし） | 全レイヤー |
 
 ## Bluetooth / OS切換えマクロ
 
