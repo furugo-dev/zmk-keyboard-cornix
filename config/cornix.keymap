@@ -118,10 +118,10 @@
             bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
         };
 
-        comma_dot_morph: comma_dot_morph {
+        comma_minus_morph: comma_minus_morph {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp DOT>;
+            bindings = <&kp COMMA>, <&kp MINUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
     };
@@ -240,7 +240,7 @@
 
             bindings = <
 &none         &kp Q          &kp L         &kp U         &kp F        &kp DOT                              &kp MINUS              &kp W             &kp R            &kp Y         &kp P          &none
-&kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &comma_dot_morph                         &kp K                  &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
+&kp Q         &hm_l LCTRL E  &hm_l LALT I  &hm_l LGUI A  &kp O        &comma_minus_morph                       &kp K                  &kp T             &hm_r RGUI N     &hm_r RALT S  &hm_r RCTRL H  &kp P
 &none         &kp Z          &kp X         &kp C         &kp V        &kp SEMI   &kp C_MUTE  &kp C_AL_LOCK &kp G                  &kp D             &kp M            &kp J         &kp B          &none
 &bt_mac       &none          &none         &none     &lt 2  TAB   &hm_shift_l  LSHFT SPACE               &hm_shift_r RSHFT ENTER  &lt 3  BACKSPACE  &none            &none         &none          &bt_win
             >;
@@ -264,7 +264,7 @@
 
             bindings = <
 &none    &none     &kp N7  &kp N8  &kp N9  &none                      &none   &kp PLUS      &kp ASTRK  &kp TILDE  &kp PIPE        &none 
-&kp HASH &kp N0    &kp N4  &kp N5  &kp N6  &kp DOT                    &kp LT  &kp QUESTION  &kp EQUAL  &kp MINUS  &kp SLASH       &kp PIPE
+&kp HASH &kp N0    &kp N4  &kp N5  &kp N6  &kp DOT                    &kp LT  &kp QUESTION  &kp EQUAL  &kp DOT    &kp SLASH       &kp PIPE
 &none    &kp HASH  &kp N1  &kp N2  &kp N3  &kp PRCNT  &trans  &trans  &kp GT  &kp EXCL      &kp COLON  &kp SEMI   &kp BACKSLASH   &none
 &none    &none     &none   &trans  &trans  &trans                     &trans  &trans        &trans     &none      &none           &none
             >;
