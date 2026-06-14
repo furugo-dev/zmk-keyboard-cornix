@@ -277,7 +277,7 @@
             bindings = <
 &none      &kp CARET  &kp LBKT  &kp DQT    &kp RBKT  &none                      &kp F5    &kp F4     &kp F2     &kp F10   &kp F12  &none
 &kp CARET  &kp DLLR   &kp LPAR  &kp SQT    &kp RPAR  &kp UNDER                  &ng LEFT  &ng DOWN   &ng UP     &ng RIGHT &kp DEL  &kp F12
-&none      &kp AT     &kp LBRC  &kp GRAVE  &kp RBRC  &kp AMPS   &trans  &trans  &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &kp F11  &none
+&none      &kp AT     &kp LBRC  &kp GRAVE  &kp RBRC  &kp AMPS   &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP  &kp END   &kp F11  &none
 &none      &none      &none     &trans     &trans     &trans                    &trans    &trans     &trans     &none      &none   &none
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
